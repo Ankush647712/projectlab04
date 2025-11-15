@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Basic Geometry</title>
+
+    <style>
+        /* Main container */
+        #main-box {
+            width: 70%;
+            margin: 40px auto;
+            background-color: #f7f7f7;
+            padding: 5px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Headings */
+        #top { text-align: center; margin-bottom: 0.2em; }
+
+        /* Each section */
+        section {
+            width: 65%;
+            margin: 20px auto;
+            background-color: #eaf1ff;
+            padding: 5px;
+            border: 2px solid #6b7aa1;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        /* Back-to-top link container */
+        .go {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        label { display:inline-block; width: 220px; margin: 6px 0; }
+        input[type="text"] { padding: 4px; width: 140px; }
+
+        button {
+            padding: 6px 12px;
+            margin-top: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-box">
+        <h1 id="top">Basic Geometry</h1>
+
+        <p>In this section, we are going to find the Area of some two-dimension shapes</p>
+        <p>You can click on any shape below:</p>
+
+        <ul>
+            <li><a href="#circle" onclick="prepareCircle()">Circle</a></li>
+            <li><a href="#triangle" onclick="prepareTriangle()">Triangle</a></li>
+            <li><a href="#square" onclick="prepareSquare()">Square</a></li>
+            <li><a href="#rectangle" onclick="prepareRectangle()">Rectangle</a></li>
+        </ul>
+
+        <!-- CIRCLE -->
+        <section id="circle">
+            <h2>Circle Area</h2>
+            <div>
+                <label for="radius">Enter the value of the circle's radius:</label>
+                <input type="text" id="radius" />
+            </div>
+
+            <div>
+                <label for="circle-area">Result:</label>
+                <input type="text" id="circle-area" readonly />
+                <hr>
+            </div>
+
+            <button onclick="getCircleArea()">Calculate</button>
+
+            <div class="go"><a href="#top">Go to top</a></div>
+        </section>
+
+        <!-- TRIANGLE -->
+        <section id="triangle">
+            <h2>Triangle Area</h2>
+
+            <div>
+                <label for="base">Enter the base:</label>
+                <input type="text" id="base" />
+            </div>
+
+            <div>
+                <label for="height">Enter the height:</label>
+                <input type="text" id="height" />
+            </div>
+
+            <div>
+                <label for="triangle-area">Result:</label>
+                <input type="text" id="triangle-area" readonly />
+                <hr>
+            </div>
+
+            <button onclick="getTriangleArea()">Calculate</button>
+
+            <div class="go"><a href="#top">Go to top</a></div>
+        </section>
+
+        <!-- SQUARE -->
+        <section id="square">
+            <h2>Square Area</h2>
+
+            <div>
+                <label for="side">Enter the length of one side:</label>
+                <input type="text" id="side" />
+            </div>
+
+            <div>
+                <label for="square-area">Result:</label>
+                <input type="text" id="square-area" readonly />
+                <hr>
+            </div>
+
+            <button onclick="getSquareArea()">Calculate</button>
+
+            <div class="go"><a href="#top">Go to top</a></div>
+        </section>
+
+        <!-- RECTANGLE -->
+        <section id="rectangle">
+            <h2>Rectangle Area</h2>
+
+            <div>
+                <label for="width">Enter width:</label>
+                <input type="text" id="width" />
+            </div>
+
+            <div>
+                <label for="height-rect">Enter height:</label>
+                <input type="text" id="height-rect" />
+            </div>
+
+            <div>
+                <label for="rectangle-area">Result:</label>
+                <input type="text" id="rectangle-area" readonly />
+                <hr>
+            </div>
+
+            <button onclick="getRectangleArea()">Calculate</button>
+
+            <div class="go"><a href="#top">Go to top</a></div>
+        </section>
+    </div>
+
+    <script>
+        // Helper to display NaN-friendly values
+        function formatNumber(n) {
+            if (isNaN(n)) return "Invalid input";
+            // return rounded to 4 decimals if decimal
+            return (Math.round(n * 10000) / 10000).toString();
+        }
+
+        function getCircleArea() {
+            let r = document.getElementById("radius").value.trim();
+            r = parseFloat(r);
+            let area = Math.PI * r * r;
+            document.getElementById("circle-area").value = formatNumber(area);
+        }
+
+        function getTriangleArea() {
+            let b = document.getElementById("base").value.trim();
+            let h = document.getElementById("height").value.trim();
+            b = parseFloat(b); h = parseFloat(h);
+            let area = 0.5 * b * h;
+            document.getElementById("triangle-area").value = formatNumber(area);
+        }
+
+        function getSquareArea() {
+            let a = document.getElementById("side").value.trim();
+            a = parseFloat(a);
+            let area = a * a;
+            document.getElementById("square-area").value = formatNumber(area);
+        }
+
+        function getRectangleArea() {
+            let w = document.getElementById("width").value.trim();
+            let h = document.getElementById("height-rect").value.trim();
+            w = parseFloat(w); h = parseFloat(h);
+            let area = w * h;
+            document.getElementById("rectangle-area").value = formatNumber(area);
+        }
+
+        // Optional: clear result when user clicks link to jump
+        function prepareCircle() { document.getElementById("circle-area").value = ""; }
+        function prepareTriangle() { document.getElementById("triangle-area").value = ""; }
+        function prepareSquare() { document.getElementById("square-area").value = ""; }
+        function prepareRectangle() { document.getElementById("rectangle-area").value = ""; }
+    </script>
+
+</body>
+</html>
